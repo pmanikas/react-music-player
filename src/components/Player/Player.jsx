@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import localSave from "./../../utils/localSave.utils";
 import { updateCurrentSong } from "./../../store/actions/songs.actions";
 import { play, pause } from "./../../store/actions/player.actions";
 import {
@@ -8,10 +9,16 @@ import {
   timeUpdate,
 } from "./../../services/player.service";
 import { covertMsToTime } from "./../../utils/timeFormat.utils";
-
 import styles from "./Player.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStepBackward, faStepForward } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStepBackward,
+  faStepForward,
+  faVolumeUp,
+  faVolumeDown,
+  faVolumeOff,
+  faVolumeMute,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faPlayCircle,
   faPauseCircle,
@@ -30,6 +37,7 @@ const Player = ({ audioRef }) => {
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
+    volume: localSave.get("currentVolume") || 1,
   });
 
   const timeUpdateHandler = (e) => {
@@ -50,6 +58,23 @@ const Player = ({ audioRef }) => {
     setSongInfo({ ...songInfo, currentTime: e.target.value });
   };
 
+  const volumeDragHandler = (e) => {
+    const newVolume = e.target.value / 100;
+    audioRef.current.volume = newVolume;
+    setSongInfo({ ...songInfo, volume: newVolume });
+    localSave.save("previousVolume", newVolume);
+    localSave.save("currentVolume", newVolume);
+  };
+
+  const muteClickHandler = () => {
+    let newVolume;
+    let previousVolume = localSave.get("previousVolume") || 1;
+    newVolume = audioRef.current.volume > 0 ? "0" : previousVolume;
+    audioRef.current.volume = newVolume;
+    setSongInfo({ ...songInfo, volume: newVolume });
+    localSave.save("currentVolume", newVolume);
+  };
+
   const skipTrackHandler = (direction) => {
     if (direction === "skip-back") {
       skipBackwards(songs, currentSong, setCurrentSong, isPlaying, audioRef);
@@ -65,6 +90,19 @@ const Player = ({ audioRef }) => {
       (songInfo.currentTime / songInfo.duration) * 100
     }%)`,
   };
+
+  const volumeTrack = {
+    transform: `translateY(${100 - songInfo.volume * 100}%)`,
+  };
+
+  const volumeIcon =
+    songInfo.volume > 0.66
+      ? faVolumeUp
+      : songInfo.volume > 0.33
+      ? faVolumeDown
+      : songInfo.volume > 0
+      ? faVolumeOff
+      : faVolumeMute;
 
   return (
     <div className={styles.player}>
@@ -110,6 +148,32 @@ const Player = ({ audioRef }) => {
           size="2x"
           icon={faStepForward}
         />
+        <div className={styles.volumeContainer}>
+          <div className={styles.volumeTrack}>
+            <div className={styles.volumeSliderBackground}></div>
+            <input
+              onChange={volumeDragHandler}
+              className={styles.volumeInput}
+              type="range"
+              min={0}
+              value={songInfo.volume * 100 || 100}
+              max={100}
+              orient="vertical"
+            />
+            <div
+              style={volumeTrack}
+              className={styles.volumeAnimateTrack}
+            ></div>
+          </div>
+          <div className={styles.volumeIconContainer}>
+            <FontAwesomeIcon
+              onClick={() => muteClickHandler()}
+              className={`${styles.icon} ${styles.volumeIcon}`}
+              size="2x"
+              icon={volumeIcon}
+            />
+          </div>
+        </div>
       </div>
       <audio
         onTimeUpdate={timeUpdateHandler}

@@ -3,6 +3,7 @@ const play = () => {
     type: "PLAY",
   };
 };
+
 const pause = () => {
   return {
     type: "PAUSE",
