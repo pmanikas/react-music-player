@@ -1,0 +1,48 @@
+@import "./design";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: transparentize($c-dusty-gray, 0.5) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 100%;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: transparentize($c-dusty-gray, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+input::-webkit-slider-thumb {
+  appearance: none;
+}
+input::-moz-range-thumb {
+  appearance: none;
+  background: transparent;
+  border: none;
+}
+
+h1,
+h2 {
+  color: $c-mine-shaft;
+}
+
+h3,
+h4 {
+  font-weight: bold;
+  color: $c-dove-gray;
+}

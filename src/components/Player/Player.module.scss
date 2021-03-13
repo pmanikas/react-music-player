@@ -1,0 +1,79 @@
+@import "./../../styles/design";
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 20vh;
+}
+
+.timeControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  max-width: 90%;
+  margin: 2rem 0 1rem;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 1rem;
+  margin: 0 1rem;
+  background-size: 100% 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.sliderBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background: $c-mine-shaft;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.timeInput {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  &::focus{
+    outline: none;
+  }
+  &::-webkit-slider-thumb {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.animateTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $c-silver;
+  transform: translateX(0%);
+  pointer-events: none;
+}
+
+.playerControl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  max-width: 70%;
+  padding: 1rem;
+}
+
+.icon {
+  cursor: pointer;
+}

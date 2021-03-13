@@ -1,0 +1,44 @@
+@import "./../../styles/design";
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  &.active {
+    background: transparentize($c-violet-red, 0.5);
+  }
+}
+
+.cover {
+  width: 30%;
+}
+
+.meta {
+  padding-left: 1rem;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.artist {
+  font-size: 0.7rem;
+}
+
+@include desktop {
+  .container {
+    cursor: pointer;
+    &::before {
+      @include fill;
+      z-index: $z-minus;
+      content: "";
+      background: $c-silver;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+}
