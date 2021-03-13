@@ -4,6 +4,8 @@ import App from "./App";
 
 import "./styles/style.scss";
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -24,3 +26,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+serviceWorkerRegistration.register();
