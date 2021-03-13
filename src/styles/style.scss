@@ -23,12 +23,15 @@
   border: transparent;
 }
 
+::selection { color: inherit; }
+
 body {
   font-family: "Lato", sans-serif;
 }
 
 input::-webkit-slider-thumb {
   appearance: none;
+  border: none;
 }
 input::-moz-range-thumb {
   appearance: none;

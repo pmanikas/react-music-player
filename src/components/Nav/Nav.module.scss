@@ -2,9 +2,10 @@
 
 .nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   min-height: 10vh;
+  padding: 0 2rem;
 }
 
 .navButton {
@@ -28,10 +29,28 @@
     background: $c-mine-shaft;
     transition: opacity .3s ease-out;
   }
-  &:hover {
+  &:active {
     color: $c-white;
     &::before {
       opacity: 1;
+    }
+  }
+}
+
+@include tablet {
+  .nav {
+    justify-content: space-around;
+    padding: 0;
+  }
+}
+
+@include desktop {
+  .navButton {
+    &:hover {
+      color: $c-white;
+      &::before {
+        opacity: 1;
+      }
     }
   }
 }
