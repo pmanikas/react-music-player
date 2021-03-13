@@ -7,13 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = () => {
-
   const dispatch = useDispatch();
   const dispatchToggleLibrary = () => dispatch(toggleLibrary());
 
   return (
     <nav className={styles.nav}>
-      <h1>Waves</h1>
+      <h1>Chill Vibes</h1>
       <button
         onClick={() => dispatchToggleLibrary()}
         className={styles.navButton}
