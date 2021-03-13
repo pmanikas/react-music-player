@@ -1,4 +1,4 @@
-export const skipForward = async (
+const skipForward = async (
   songs,
   currentSong,
   setCurrentSong,
@@ -10,7 +10,7 @@ export const skipForward = async (
   if (isPlaying) audioRef.current.play();
 };
 
-export const skipBackwards = async (
+const skipBackwards = async (
   songs,
   currentSong,
   setCurrentSong,
@@ -23,3 +23,14 @@ export const skipBackwards = async (
     : setCurrentSong(songs[currentIndex - 1]);
   if (isPlaying) audioRef.current.play();
 };
+
+const timeUpdate = (e, setSongInfo, songInfo, skipTrackHandler) => {
+  const current = e.target.currentTime;
+  const duration = e.target.duration;
+  setSongInfo({ ...songInfo, currentTime: current, duration });
+  if (duration - current < 1) {
+    skipTrackHandler("skip-forward");
+  }
+};
+
+export { skipForward, skipBackwards, timeUpdate };

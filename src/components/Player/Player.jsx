@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateCurrentSong } from "./../../store/actions/songs.actions";
 import { play, pause } from "./../../store/actions/player.actions";
-import { skipForward, skipBackwards } from "./../../services/player.service";
+import {
+  skipForward,
+  skipBackwards,
+  timeUpdate,
+} from "./../../services/player.service";
 import { covertMsToTime } from "./../../utils/timeFormat.utils";
 
 import styles from "./Player.module.scss";
@@ -16,26 +20,21 @@ import {
 const Player = ({ audioRef }) => {
   const songs = useSelector((state) => state.songsState.songs);
   const currentSong = useSelector((state) => state.songsState.currentSong);
-  const isPlaying = useSelector(state => state.playerState.isPlaying);
+  const isPlaying = useSelector((state) => state.playerState.isPlaying);
 
   const dispatch = useDispatch();
   const setCurrentSong = (song) => dispatch(updateCurrentSong(song));
   const setAsPlaying = () => dispatch(play());
   const setAsPaused = () => dispatch(pause());
 
-  const timeUpdateHandler = (e) => {
-    const current = e.target.currentTime;
-    const duration = e.target.duration;
-    setSongInfo({ ...songInfo, currentTime: current, duration });
-    if(duration - current < 1) {
-      skipTrackHandler('skip-forward');
-    }
-  };
-
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
   });
+
+  const timeUpdateHandler = (e) => {
+    timeUpdate(e, setSongInfo, songInfo, skipTrackHandler);
+  };
 
   const playSongHandler = () => {
     if (!currentSong || !currentSong.audio) return;

@@ -14,7 +14,7 @@ const songsReducer = (state = initState, action) => {
     case "UPDATE_CURRENT_SONG":
       return {
         ...state,
-        currentSong: action.payload,
+        currentSong: action.data,
       };
     default:
       return { ...state };

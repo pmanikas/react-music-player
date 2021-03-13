@@ -46,7 +46,7 @@
   background: transparent;
   outline: none;
   cursor: pointer;
-  &::focus{
+  &::focus {
     outline: none;
   }
   &::-webkit-slider-thumb {
@@ -77,4 +77,5 @@
 
 .icon {
   cursor: pointer;
+  color: $c-mine-shaft;
 }

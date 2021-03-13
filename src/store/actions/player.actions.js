@@ -1,10 +1,12 @@
-export const play = () => {
+const play = () => {
   return {
     type: "PLAY",
-  }
-}
-export const pause = () => {
+  };
+};
+const pause = () => {
   return {
     type: "PAUSE",
-  }
-}
+  };
+};
+
+export { play, pause };
