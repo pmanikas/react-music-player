@@ -8,6 +8,16 @@
   padding: 0 2rem;
 }
 
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 20px;
+  margin-right: 0.75rem;
+}
+
 .navButton {
   position: relative;
   z-index: $z-highlight;
