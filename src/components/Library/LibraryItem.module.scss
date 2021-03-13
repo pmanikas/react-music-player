@@ -6,12 +6,17 @@
   align-items: center;
   padding: 1rem 2rem;
   &.active {
-    background: transparentize($c-violet-red, 0.5);
+    background: $c-eastern-snow-gradient;
+    .title, .artist {
+      color: $c-cod-gray;
+    }
   }
 }
 
 .cover {
   width: 30%;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .meta {

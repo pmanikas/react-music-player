@@ -1,7 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { searchSongs } from "./../../store/actions/songs.actions";
 import styles from "./Library.module.scss";
 import LibraryItem from "./LibraryItem";
+import Search from "./../Search/Search";
 
 const Library = ({ audioRef }) => {
   const songs = useSelector((state) => state.songsState.songs);
@@ -11,9 +13,14 @@ const Library = ({ audioRef }) => {
   );
   const isPlaying = useSelector((state) => state.playerState.isPlaying);
 
+  const dispatch = useDispatch();
+
+  const commitSearch = (e) => dispatch(searchSongs(e.target.value));
+
   return (
     <div className={`${styles.library} ${isLibraryOpen ? styles.active : ""}`}>
       <h2 className={styles.title}>Library</h2>
+      <Search commitSearch={commitSearch} />
       <div className={styles.songs}>
         {songs.map((song) => (
           <LibraryItem

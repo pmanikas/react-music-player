@@ -11,6 +11,11 @@ const songsReducer = (state = initState, action) => {
         songs: action.payload,
         currentSong: action.payload[0],
       };
+    case "SEARCH_SONGS":
+      return {
+        ...state,
+        songs: action.payload.filter(song => JSON.stringify(song).toLowerCase().match(action.query.toLowerCase())),
+      };
     case "UPDATE_CURRENT_SONG":
       return {
         ...state,

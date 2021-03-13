@@ -1,0 +1,45 @@
+@import "./../../styles/design";
+
+.searchContainer {
+  position: relative;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.searchInput {
+  width: 100%;
+  height: 2rem;
+  appearance: none;
+  padding: 0 1rem;
+  border-radius: 16px;
+  border: 2px solid $c-silver;
+  outline: none;
+  &:focus {
+    border-color: transparentize($c-eastern-blue, 0.5);
+  }
+}
+
+.searchInput::selection { 
+  color: $c-white;
+  background: $c-eastern-blue;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  display: inline;
+  height: 2rem;
+  vertical-align: middle;
+  color: $c-silver;
+}
+
+@include desktop {
+  .searchInput {
+    height: 1.5rem;
+    border-radius: 12px;
+  }
+  .searchIcon {
+    height: 1.5rem;
+  }
+}

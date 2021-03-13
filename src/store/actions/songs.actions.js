@@ -8,6 +8,15 @@ const getSongs = () => async (dispatch) => {
   });
 };
 
+const searchSongs = (q) => async (dispatch) => {
+  const allSongs = await getAll();
+  dispatch({
+    type: "SEARCH_SONGS",
+    query: q,
+    payload: allSongs,
+  });
+};
+
 const updateCurrentSong = (song) => async (dispatch) => {
   await dispatch({
     type: "UPDATE_CURRENT_SONG",
@@ -15,4 +24,4 @@ const updateCurrentSong = (song) => async (dispatch) => {
   });
 };
 
-export { getSongs, updateCurrentSong };
+export { getSongs, searchSongs, updateCurrentSong };
