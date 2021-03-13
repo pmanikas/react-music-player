@@ -2,6 +2,8 @@
 
 @include desktop {
   .mainContent {
+    width: 720px;
+    margin: 0 auto;
     transform: translateX(0%);
     transition: transform .5s ease-out;
     &.slidedRight {
