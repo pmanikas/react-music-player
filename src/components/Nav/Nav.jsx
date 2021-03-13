@@ -18,7 +18,7 @@ const Nav = () => {
     <nav className={styles.nav}>
       <h1 className={styles.title}>
       <div className={styles.logo}>
-        <LazyImage src="/images/chill-vibes-logo.png" alt="Chill Vibes Logo" />
+        <LazyImage src="images/chill-vibes-logo.png" alt="Chill Vibes Logo" />
       </div>
         Chill Vibes</h1>
       <button
