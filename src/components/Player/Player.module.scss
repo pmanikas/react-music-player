@@ -25,6 +25,11 @@
   background-size: 100% 100%;
   border-radius: 1rem;
   overflow: hidden;
+  &:hover {
+    .animateTrack {
+      opacity: 0.7;
+    }
+  }
 }
 
 .sliderBackground {
@@ -64,13 +69,15 @@
   background: $c-silver;
   transform: translateX(0%);
   pointer-events: none;
+  opacity: 1;
+  transition: opacity .3s ease-out;
 }
 
 .playerControl {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  width: 300px;
   max-width: 70%;
   padding: 1rem;
 }
@@ -78,4 +85,9 @@
 .icon {
   cursor: pointer;
   color: $c-mine-shaft;
+  opacity: 0.8;
+  transition: opacity .3s ease-out;
+  &:hover {
+    opacity: 1;
+  }
 }

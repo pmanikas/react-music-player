@@ -1,0 +1,17 @@
+.image {
+  display: block;
+  height: 100%;
+  width: 100%;
+  &.loaded:not(.hasError) {
+    animation: loaded 1000ms ease-in-out;
+  }
+}
+
+@keyframes loaded {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -11,7 +11,7 @@ import { covertMsToTime } from "./../../utils/timeFormat.utils";
 
 import styles from "./Player.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faStepBackward, faStepForward } from "@fortawesome/free-solid-svg-icons";
 import {
   faPlayCircle,
   faPauseCircle,
@@ -96,7 +96,7 @@ const Player = ({ audioRef }) => {
           onClick={() => skipTrackHandler("skip-back")}
           className={`${styles.icon} ${styles.skipBack}`}
           size="2x"
-          icon={faAngleLeft}
+          icon={faStepBackward}
         />
         <FontAwesomeIcon
           onClick={playSongHandler}
@@ -108,7 +108,7 @@ const Player = ({ audioRef }) => {
           onClick={() => skipTrackHandler("skip-forward")}
           className={`${styles.icon} ${styles.skipForward}`}
           size="2x"
-          icon={faAngleRight}
+          icon={faStepForward}
         />
       </div>
       <audio
